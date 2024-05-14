@@ -473,7 +473,9 @@ class AnimarkerState extends State<Animarker> with TickerProviderStateMixin {
 
   void _rippleListener(Circle circle) async {
     var tempCircles = _circles.set;
-    _zoomScale = 0.000015;
+    _zoomScale =
+        SphericalUtil.calculateZoomScale(_devicePxRatio, widget.zoom, midPoint);
+
     _circles[circle.circleId] =
         circle.copyWith(radiusParam: circle.radius / _zoomScale);
 
